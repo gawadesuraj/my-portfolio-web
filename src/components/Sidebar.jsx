@@ -1,45 +1,81 @@
+import { FaGithub, FaLinkedin, FaXTwitter, FaWhatsapp } from "react-icons/fa6";
+import { FiMail } from "react-icons/fi";
+import profileImage from "../assets/myimage.jpg";
+
 export default function Sidebar() {
   return (
-    <aside className="fixed left-[20%] top-[90px] w-[28%]">
-      <div className="w-[280px]">
-        {/* profile */}
+    <aside className="w-full md:fixed md:left-[14%] md:top-[100px] md:w-[20%] pt-28 md:pt-0">
+      <div className="w-[280px] flex flex-col items-center text-center mx-auto">
         <img
-          src="https://i.pravatar.cc/300"
-          alt="profile"
-          className="w-48 h-48 rounded-xl object-cover grayscale"
+          src={profileImage}
+          alt="Suraj Gawade"
+          className="w-44 h-44 rounded-xl object-cover grayscale hover:grayscale-0 transition-all duration-700 border border-white/5 shadow-2xl"
         />
 
-        {/* name */}
-        <h1 className="text-5xl text-white mt-6 font-semibold tracking-tight">
-          Suraj
-        </h1>
-
-        {/* role */}
-        <p className="text-sm text-gray-400 mt-3 leading-relaxed">
-          full-stack software engineer for the{" "}
-          <span className="text-white">web</span> and{" "}
-          <span className="border border-dashed border-gray-600 px-1">
-            mobile
-          </span>
+        {/* Reduced margin-top from mt-6 to mt-4 */}
+        <p className="text-sm text-gray-400 mt-4 leading-relaxed px-2 font-light">
+          Full-Stack Software Engineer Building{" "}
+          <span className="text-white">
+            scalable{" "}
+            <span className="relative inline-block px-2 py-[1px]">
+              <span
+                className="absolute inset-0 bg-gray-600"
+                style={{
+                  clipPath: "polygon(3% 30%, 95% 10%, 100% 70%, 5% 95%)",
+                }}
+              />
+              <span className="relative">web</span>
+            </span>{" "}
+            apps
+          </span>{" "}
+          with modern UI and production-ready backends.
         </p>
 
-        <div className="border-t border-dashed border-gray-700 my-6" />
+        {/* Reduced margin-top from mt-4 to mt-3 */}
+        <div className="mt-3 flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/5 rounded-full">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+            Available for Work
+          </span>
+        </div>
 
-        <div className="flex gap-4 text-gray-400">
-          <Icon>G</Icon>
-          <Icon>L</Icon>
-          <Icon>T</Icon>
-          <Icon>M</Icon>
+        {/* Reduced divider margin from my-8 to mt-6 mb-4 */}
+        <div className="w-full border-t border-dashed border-gray-800 mt-6 mb-4" />
+
+        <div className="flex justify-center gap-6">
+          <SocialIcon label="GitHub" href="https://github.com/gawadesuraj">
+            <FaGithub size={22} />
+          </SocialIcon>
+          <SocialIcon label="LinkedIn" href="#">
+            <FaLinkedin size={22} />
+          </SocialIcon>
+          <SocialIcon label="X" href="#">
+            <FaXTwitter size={22} />
+          </SocialIcon>
+          <SocialIcon label="Mail" href="mailto:suraj@gmail.com">
+            <FiMail size={22} />
+          </SocialIcon>
         </div>
       </div>
     </aside>
   );
 }
 
-function Icon({ children }) {
+function SocialIcon({ children, href, label }) {
   return (
-    <div className="w-9 h-9 border border-gray-800 flex items-center justify-center hover:border-gray-500 transition">
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group relative text-gray-500 hover:text-white transition-all duration-500"
+    >
       {children}
-    </div>
+      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-bold text-gray-600 uppercase tracking-widest opacity-0 group-hover:opacity-100 group-hover:-bottom-6 transition-all duration-500">
+        {label}
+      </span>
+    </a>
   );
 }
