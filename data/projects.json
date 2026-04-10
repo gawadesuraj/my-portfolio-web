@@ -19,5 +19,26 @@
     "desc": "Minimal resume-style portfolio with progressive sections, smooth UI interactions and clean typography focused on performance.",
     "tech": "React · Tailwind · Framer Motion",
     "live": "https://your-portfolio.vercel.app"
+  },
+   {
+    "id": 1,
+    "title": "Grampanchayat Dholewadi",
+    "desc": "Developed a digital village administration platform with certificate automation, citizen services and admin dashboard.",
+    "tech": "React · Supabase · Tailwind",
+    "live": "https://dholewadi.in"
+  },
+  {
+    "id": 2,
+    "title": "API Response Visualizer",
+    "desc": "Developer tool to visualize API responses and validate data using schema-based validation with structured JSON preview.",
+    "tech": "React · JSON Schema · Tailwind",
+    "live": "https://api-visualizer.vercel.app"
+  },
+  {
+    "id": 3,
+    "title": "Developer Portfolio",
+    "desc": "Minimal resume-style portfolio with progressive sections, smooth UI interactions and clean typography focused on performance.",
+    "tech": "React · Tailwind · Framer Motion",
+    "live": "https://your-portfolio.vercel.app"
   }
 ]
