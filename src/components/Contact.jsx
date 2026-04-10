@@ -14,19 +14,19 @@ export default function Contact() {
       href: "https://linkedin.com/in/surajgawade",
     },
     {
-      name: "X / Twitter",
+      name: "twitter",
       icon: <FaXTwitter />,
-      href: "https://x.com/gawadesuraj",
+      href: "https://x.com/surajdotin",
     },
-    {
-      name: "WhatsApp",
-      icon: <FaWhatsapp />,
-      href: "https://wa.me/919999999999",
-    },
+    // {
+    //   name: "WhatsApp",
+    //   icon: <FaWhatsapp />,
+    //   href: "https://wa.me/",
+    // },
     {
       name: "Email",
       icon: <FiMail />,
-      href: "mailto:surajgawade.dev@gmail.com",
+      href: "mailto:csemr.surajgawade@gmail.com",
     },
   ];
 
