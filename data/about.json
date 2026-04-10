@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "text": "I'm a software engineer focused on building enterprise-grade applications, clean user interfaces and performance-driven backend systems. I specialize in full stack development with expertise in React, Node.js and modern web technologies."
+    "html": "I'm a <span class='text-white font-medium'>software engineer</span> focused on building <span class='text-white font-medium'>enterprise-grade applications</span>, clean <span class='text-white font-medium'>user interfaces</span> and <span class='text-white font-medium'>performance-driven backend systems</span>. I specialize in <span class='text-white font-medium'>full stack development</span> with expertise in React, Node.js and modern web technologies."
   },
   {
     "id": 2,
-    "text": "Currently, I'm developing cloud-native solutions as a MERN Intern at codevocado. I also lead the development of the Grampanchayat Dholewadi platform (https://dholewadi.in) as my final year project, digitizing rural administration using React and Supabase."
+    "html": "Currently, I'm developing <span class='text-white font-medium'>cloud-native solutions</span> as a MERN Intern at <span class='text-white font-medium'>Codevocado</span>. I also lead the development of the <span class='text-white font-medium'>Grampanchayat Dholewadi</span> platform (<a href='https://dholewadi.in' target='_blank' class='text-white font-medium hover:underline'>dholewadi.in</a>) as my final year project, digitizing rural administration using React and Supabase."
   },
   {
     "id": 3,
-    "text": "I'm passionate about writing clean, maintainable code that delivers measurable impact. Currently completing my Computer Science degree at Tatyasaheb Kore Institute of Engineering and Technology."
+    "html": "I'm passionate about writing <span class='text-white font-medium'>clean, maintainable code</span> that delivers measurable impact. Currently completing my Computer Science degree at Tatyasaheb Kore Institute of Engineering and Technology."
   }
 ]
