@@ -9,7 +9,7 @@ export default function Sidebar() {
         <img
           src={profileImage}
           alt="Suraj Gawade"
-          className="w-44 h-44 rounded-xl object-cover grayscale hover:grayscale-0 transition-all duration-700 border border-white/5 shadow-2xl"
+          className="w-44 h-44 rounded-xl border border-white/5 shadow-2xl"
         />
 
         {/* Reduced margin-top from mt-6 to mt-4 */}
