@@ -1,5 +1,4 @@
 import Sidebar from "./components/Sidebar";
-import Hero from "./components/Hero";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
@@ -8,6 +7,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Logs from "./components/Logs";
 import GitHubVelocity from "./components/metrix";
+import About from "./components/About";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
 
           {/* Width 100% on mobile, 70% on desktop. Removed ml-[30%] on mobile to prevent horizontal scroll */}
           <main className="w-full md:w-[70%] md:ml-[30%] px-6 md:px-12 pt-10 md:pt-20 pb-10 space-y-14">
-            <Hero />
+            <About />
             <Experience />
             <Projects />
             <Skills />

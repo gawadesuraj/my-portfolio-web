@@ -16,7 +16,7 @@ export default function Sidebar() {
         <p className="text-sm text-gray-400 mt-4 leading-relaxed px-2 font-light">
           Full-Stack Software Engineer Building{" "}
           <span className="text-white">
-            scalable{" "}
+            {/* scalable{" "} */}
             <span className="relative inline-block px-2 py-[1px]">
               <span
                 className="absolute inset-0 bg-gray-600"
@@ -26,9 +26,8 @@ export default function Sidebar() {
               />
               <span className="relative">web</span>
             </span>{" "}
-            apps
+            apps.
           </span>{" "}
-          with modern UI and production-ready backends.
         </p>
 
         {/* Reduced margin-top from mt-4 to mt-3 */}
@@ -45,17 +44,17 @@ export default function Sidebar() {
         {/* Reduced divider margin from my-8 to mt-6 mb-4 */}
         <div className="w-full border-t border-dashed border-gray-800 mt-6 mb-4" />
 
-        <div className="flex justify-center gap-6">
+        <div className="flex justify-center gap-9">
           <SocialIcon label="GitHub" href="https://github.com/gawadesuraj">
             <FaGithub size={22} />
           </SocialIcon>
-          <SocialIcon label="LinkedIn" href="#">
+          <SocialIcon label="LinkedIn" href="https://linkedin.com/in/surajgawade">
             <FaLinkedin size={22} />
           </SocialIcon>
-          <SocialIcon label="X" href="#">
+          <SocialIcon label="X" href="https://x.com/surajdotin">
             <FaXTwitter size={22} />
           </SocialIcon>
-          <SocialIcon label="Mail" href="mailto:suraj@gmail.com">
+          <SocialIcon label="Mail" href="mailto:csemr.surajgawade@gmail.com">
             <FiMail size={22} />
           </SocialIcon>
         </div>
