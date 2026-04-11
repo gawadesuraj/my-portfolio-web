@@ -1,26 +1,23 @@
 {
   "learning": [
     {
-      "url": "https://hashnode.com/blog-learning-1"
+      "title": "React Rendering",
+      "text": "Understanding re-renders in React.",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800",
+      "date": "2026-04-10",
+      "link": "https://your.hashnode.dev/react",
+      "type": "blog"
     }
   ],
   "updates": [
     {
-      "url": "https://hashnode.com/blog-update-1"
-    },
-    {
-      "title": "Portfolio 3.0",
-      "text": "Complete redesign focusing on expensive minimalism.",
-      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-      "date": "2026-04-07"
+      "title": "Portfolio Preview",
+      "text": "Shared UI redesign",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+      "date": "2026-04-09",
+      "link": "https://linkedin.com/post",
+      "type": "linkedin"
     }
   ],
-  "books": [
-    {
-      "title": "Atomic Habits",
-      "text": "Understanding the compound interest of tiny self-improvements.",
-      "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800",
-      "date": "2026-04-07"
-    }
-  ]
+  "books": []
 }
