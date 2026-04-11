@@ -5,9 +5,7 @@ export default function About() {
   const [content, setContent] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/about.json",
-    )
+    fetch("https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/about.json")
       .then((res) => res.json())
       .then((data) => setContent(data));
   }, []);
@@ -19,9 +17,8 @@ export default function About() {
           <p
             key={item.id}
             className="mt-4 animate-in fade-in slide-in-from-top-2 duration-700"
-          >
-            {item.text}
-          </p>
+            dangerouslySetInnerHTML={{ __html: item.html }}
+          />
         ))}
 
         {step < content.length && (

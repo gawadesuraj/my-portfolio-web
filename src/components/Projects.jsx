@@ -1,40 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Projects() {
   const [visibleCount, setVisibleCount] = useState(3);
+  const [projects, setProjects] = useState([]);
 
-  const projects = [
-    {
-      title: "Face Attendance System",
-      desc: "AI-based attendance system using face recognition with real-time tracking and admin dashboard.",
-      tech: "React · Node · MongoDB · Face API",
-    },
-    {
-      title: "API Response Visualizer",
-      desc: "Developer tool to visualize and validate API responses using schema-based validation.",
-      tech: "React · JSON Schema · Tailwind",
-    },
-    {
-      title: "Portfolio Builder",
-      desc: "Minimal developer portfolio with sticky layout and resume-style UI.",
-      tech: "React · Tailwind · Framer Motion",
-    },
-    {
-      title: "Clinic Appointment Platform",
-      desc: "Appointment booking system with doctor availability and admin dashboard.",
-      tech: "React · Node · MongoDB",
-    },
-    {
-      title: "Grampanchayat Portal",
-      desc: "Digital village administration system with certificate automation.",
-      tech: "React · Supabase · Tailwind",
-    },
-    {
-      title: "QR Generator",
-      desc: "QR generator from images with dynamic metadata encoding.",
-      tech: "React · Canvas · Node",
-    },
-  ];
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/projects.json",
+    )
+      .then((res) => res.json())
+      .then((data) => setProjects(data));
+  }, []);
 
   return (
     <section className="">
@@ -66,7 +42,7 @@ export default function Projects() {
         {visibleCount < projects.length && (
           <div
             className="absolute bottom-0 left-0 right-0 h-16 
-    bg-gradient-to-t from-black to-transparent pointer-events-none"
+            bg-gradient-to-t from-black to-transparent pointer-events-none"
           />
         )}
       </div>
@@ -89,12 +65,26 @@ export default function Projects() {
   );
 }
 
-function Project({ title, desc, tech }) {
+function Project({ title, desc, tech, live }) {
   return (
     <div className="group">
-      <h3 className="text-white">{title}</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-white">{title}</h3>
+
+        {live && (
+          <a
+            href={live}
+            target="_blank"
+            className="text-xs text-gray-500 hover:text-white transition"
+          >
+            live ↗
+          </a>
+        )}
+      </div>
+
       <p className="text-gray-400 text-sm mt-2 leading-relaxed">{desc}</p>
       <p className="text-xs text-gray-500 mt-2">{tech}</p>
+
       <div className="border-t border-dashed border-gray-800 mt-5 group-last:hidden" />
     </div>
   );

@@ -9,7 +9,9 @@ import {
   BiLogoGit,
   BiLogoGithub,
   BiLogoVisualStudio,
+  BiLogoCPlusPlus,
 } from "react-icons/bi";
+
 import { SiExpress, SiPostman, SiMysql } from "react-icons/si";
 import { TbApi } from "react-icons/tb";
 
@@ -18,15 +20,17 @@ export default function Skills() {
     {
       label: "Programming Languages",
       items: [
+        { name: "C", icon: <BiLogoCPlusPlus /> },
+        { name: "C++", icon: <BiLogoCPlusPlus /> },
         { name: "JavaScript", icon: <BiLogoJavascript /> },
-        { name: "HTML5", icon: <BiLogoHtml5 /> },
-        { name: "CSS3", icon: <BiLogoCss3 /> },
         { name: "SQL", icon: <SiMysql /> },
       ],
     },
     {
       label: "Web Technologies",
       items: [
+        { name: "HTML5", icon: <BiLogoHtml5 /> },
+        { name: "CSS3", icon: <BiLogoCss3 /> },
         { name: "React", icon: <BiLogoReact /> },
         { name: "Tailwind", icon: <BiLogoTailwindCss /> },
         { name: "Node.js", icon: <BiLogoNodejs /> },
@@ -48,7 +52,7 @@ export default function Skills() {
 
   return (
     <section className="py-2">
-      {/* Heading - Preserved exactly */}
+      {/* Heading */}
       <div className="relative inline-block mb-16 group ml-4 md:ml-0">
         <div
           className="absolute -inset-1 -left-4 -right-4 bg-gray-500/20
@@ -79,25 +83,25 @@ export default function Skills() {
               </p>
             </div>
 
-            {/* Marquee with Blurry Edges */}
+            {/* Marquee */}
             <div className="relative group">
-              {/* THE BLURRY EFFECT: Left & Right Fades */}
               <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
               <div className="flex overflow-hidden">
                 <div
-                  className={`flex whitespace-nowrap gap-6 py-2 group-hover:[animation-play-state:paused] ${idx % 2 === 0 ? "animate-marquee" : "animate-marquee-reverse"}`}
+                  className={`flex whitespace-nowrap gap-6 py-2 group-hover:[animation-play-state:paused] ${
+                    idx % 2 === 0
+                      ? "animate-marquee"
+                      : "animate-marquee-reverse"
+                  }`}
                 >
-                  {/* Original Set */}
                   {section.items.map((item, i) => (
                     <SkillBox key={i} item={item} />
                   ))}
-                  {/* Duplicated Set for Loop */}
                   {section.items.map((item, i) => (
                     <SkillBox key={`d1-${i}`} item={item} />
                   ))}
-                  {/* Third Set to ensure no gaps on very wide screens */}
                   {section.items.map((item, i) => (
                     <SkillBox key={`d2-${i}`} item={item} />
                   ))}
@@ -108,7 +112,6 @@ export default function Skills() {
         ))}
       </div>
 
-      {/* Logic for the movements */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
