@@ -1,0 +1,26 @@
+{
+  "learning": [
+    {
+      "url": "https://hashnode.com/blog-learning-1"
+    }
+  ],
+  "updates": [
+    {
+      "url": "https://hashnode.com/blog-update-1"
+    },
+    {
+      "title": "Portfolio 3.0",
+      "text": "Complete redesign focusing on expensive minimalism.",
+      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
+      "date": "2026-04-07"
+    }
+  ],
+  "books": [
+    {
+      "title": "Atomic Habits",
+      "text": "Understanding the compound interest of tiny self-improvements.",
+      "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800",
+      "date": "2026-04-07"
+    }
+  ]
+}

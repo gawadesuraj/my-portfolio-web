@@ -1,125 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const BATCH = 1; // load 2 at a time
+const BATCH = 1;
 
 export default function Logs() {
   const [active, setActive] = useState("learning");
   const [visible, setVisible] = useState(BATCH);
+  const [data, setData] = useState({
+    learning: [],
+    updates: [],
+    books: [],
+  });
 
-  const data = {
-    learning: [
-      {
-        title: "Understanding React Rendering",
-        text: "Deep dive into React memoization and rendering lifecycle optimization.",
-        image:
-          "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800",
-        date: "2026-04-07",
-      },
-      {
-        title: "Sticky Layout UI",
-        text: "Building complex split-screen layouts using modern CSS and Tailwind.",
-        image:
-          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
-        date: "2026-04-06",
-      },
-      {
-        title: "Tailwind Experiments",
-        text: "Advanced flexbox and grid combinations for editorial-style web design.",
-        image:
-          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800",
-        date: "2026-04-05",
-      },
-      {
-        title: "Performance Metrics",
-        text: "Using Chrome DevTools to profile and fix unnecessary re-renders.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-04",
-      },
-      {
-        title: "Performance Metrics",
-        text: "Using Chrome DevTools to profile and fix unnecessary re-renders.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-04",
-      },
-      {
-        title: "Performance Metrics",
-        text: "Using Chrome DevTools to profile and fix unnecessary re-renders.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-04",
-      },
-      {
-        title: "Performance Metrics",
-        text: "Using Chrome DevTools to profile and fix unnecessary re-renders.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-04",
-      },
-      {
-        title: "Performance Metrics",
-        text: "Using Chrome DevTools to profile and fix unnecessary re-renders.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-04",
-      },
-    ],
-    updates: [
-      {
-        title: "Portfolio 3.0",
-        text: "Complete redesign focusing on expensive minimalism and performance.",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=800",
-        date: "2026-04-07",
-      },
-      {
-        title: "Component Overhaul",
-        text: "Migrating all cards to a cleaner, text-heavy layout.",
-        image:
-          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800",
-        date: "2026-04-06",
-      },
-    ],
-    books: [
-      {
-        title: "Atomic Habits",
-        text: "Understanding the compound interest of tiny self-improvements.",
-        image:
-          "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800",
-        date: "2026-04-07",
-      },
-      {
-        title: "Deep Work",
-        text: "Strategies for remaining focused in a world of constant digital distraction.",
-        image:
-          "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=800",
-        date: "2026-04-06",
-      },
-    ],
-  };
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/blogs.json",
+    )
+      .then((res) => res.json())
+      .then(async (json) => {
+        const parsed = await parseBlogs(json);
+        setData(parsed);
+      });
+  }, []);
 
-  const sorted = [...data[active]].sort(
+  const sorted = [...(data[active] || [])].sort(
     (a, b) => new Date(b.date) - new Date(a.date),
   );
 
-  const visibleItems = sorted.slice(0, visible);
-
   return (
     <section className="py-1 mb-15">
-      {/* Heading */}
-      {/* <div className="relative inline-block mb-16 group">
-        <div
-          className="absolute -inset-1 -left-4 -right-4 bg-gray-500/20
-          rounded-[4%_96%_12%_88%/90%_25%_75%_10%] 
-          rotate-[1deg] group-hover:rotate-[-1deg] 
-          transition-transform duration-700 ease-out"
-        />
-        <p className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
-          Logs
-        </p>
-      </div> */}
-
       {/* Tabs */}
       <div className="flex gap-10 mb-12 border-b border-gray-900">
         {["learning", "updates", "books"].map((tab) => (
@@ -135,7 +43,7 @@ export default function Logs() {
         ))}
       </div>
 
-      {/* preview grid */}
+      {/* Grid */}
       <div className="relative">
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden transition-all duration-500"
@@ -189,7 +97,10 @@ function Tab({ label, active, onClick }) {
 
 function Card({ item }) {
   return (
-    <article className="group cursor-default">
+    <article
+      className="group cursor-pointer"
+      onClick={() => item.link && window.open(item.link, "_blank")}
+    >
       {/* image */}
       <div className="relative overflow-hidden rounded-sm border border-gray-900 mb-5 aspect-[16/10]">
         <img
@@ -201,39 +112,62 @@ function Card({ item }) {
           transition-all duration-700 ease-out"
         />
 
-        {/* subtle overlay */}
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition duration-500" />
       </div>
 
       {/* content */}
       <div className="space-y-3">
-        {/* date */}
         <p className="text-[10px] font-mono text-gray-600 tracking-[0.15em] uppercase">
           / {item.date}
         </p>
 
-        {/* title */}
-        <h3
-          className="text-lg md:text-xl font-light text-gray-300 
-        group-hover:text-white 
-        tracking-tight leading-snug 
-        transition-colors duration-300"
-        >
+        <h3 className="text-lg md:text-xl font-light text-gray-300 group-hover:text-white tracking-tight leading-snug transition-colors duration-300">
           {item.title}
         </h3>
 
-        {/* divider */}
         <div className="w-8 h-[1px] bg-gray-800 group-hover:w-12 transition-all duration-500" />
 
-        {/* text */}
-        <p
-          className="text-sm text-gray-500 leading-relaxed 
-        group-hover:text-gray-400 
-        transition-colors duration-300"
-        >
+        <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-400 transition-colors duration-300">
           {item.text}
         </p>
       </div>
     </article>
   );
+}
+
+async function parseBlogs(json) {
+  const fetchMeta = async (url) => {
+    try {
+      const res = await fetch(
+        `https://api.microlink.io?url=${encodeURIComponent(url)}`,
+      );
+      const data = await res.json();
+
+      return {
+        title: data.data.title,
+        text: data.data.description,
+        image: data.data.image.url,
+        date: new Date().toISOString().slice(0, 10),
+        link: url,
+      };
+    } catch {
+      return null;
+    }
+  };
+
+  const parseSection = async (items = []) => {
+    const results = await Promise.all(
+      items.map((item) => {
+        if (item.url) return fetchMeta(item.url);
+        return item;
+      }),
+    );
+    return results.filter(Boolean);
+  };
+
+  return {
+    learning: await parseSection(json.learning),
+    updates: await parseSection(json.updates),
+    books: await parseSection(json.books),
+  };
 }
