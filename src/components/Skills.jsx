@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   BiLogoReact,
   BiLogoTailwindCss,
@@ -15,40 +17,35 @@ import {
 import { SiExpress, SiPostman, SiMysql } from "react-icons/si";
 import { TbApi } from "react-icons/tb";
 
+/* ICON MAP */
+const iconMap = {
+  react: <BiLogoReact />,
+  tailwind: <BiLogoTailwindCss />,
+  js: <BiLogoJavascript />,
+  html: <BiLogoHtml5 />,
+  css: <BiLogoCss3 />,
+  node: <BiLogoNodejs />,
+  mongo: <BiLogoMongodb />,
+  git: <BiLogoGit />,
+  github: <BiLogoGithub />,
+  vscode: <BiLogoVisualStudio />,
+  cpp: <BiLogoCPlusPlus />,
+  express: <SiExpress />,
+  postman: <SiPostman />,
+  mysql: <SiMysql />,
+  api: <TbApi />,
+};
+
 export default function Skills() {
-  const sections = [
-    {
-      label: "Programming Languages",
-      items: [
-        { name: "C", icon: <BiLogoCPlusPlus /> },
-        { name: "C++", icon: <BiLogoCPlusPlus /> },
-        { name: "JavaScript", icon: <BiLogoJavascript /> },
-        { name: "SQL", icon: <SiMysql /> },
-      ],
-    },
-    {
-      label: "Web Technologies",
-      items: [
-        { name: "HTML5", icon: <BiLogoHtml5 /> },
-        { name: "CSS3", icon: <BiLogoCss3 /> },
-        { name: "React", icon: <BiLogoReact /> },
-        { name: "Tailwind", icon: <BiLogoTailwindCss /> },
-        { name: "Node.js", icon: <BiLogoNodejs /> },
-        { name: "Express", icon: <SiExpress /> },
-        { name: "MongoDB", icon: <BiLogoMongodb /> },
-        { name: "REST API", icon: <TbApi /> },
-      ],
-    },
-    {
-      label: "Engineering Tools",
-      items: [
-        { name: "Git", icon: <BiLogoGit /> },
-        { name: "GitHub", icon: <BiLogoGithub /> },
-        { name: "Postman", icon: <SiPostman /> },
-        { name: "VS Code", icon: <BiLogoVisualStudio /> },
-      ],
-    },
-  ];
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/skills.json",
+    )
+      .then((res) => res.json())
+      .then((data) => setSections(data.sections || []));
+  }, []);
 
   return (
     <section className="py-2">
@@ -137,11 +134,16 @@ export default function Skills() {
 }
 
 function SkillBox({ item }) {
+  const Icon = iconMap[item.icon];
+
   return (
     <div className="flex items-center gap-3 px-3 py-1 bg-[#0a0a0a] border border-gray-900 rounded-xl transition-all duration-300 hover:border-gray-600 hover:bg-[#111] group/box">
-      <span className="text-xl text-gray-600 group-hover/box:text-white transition-colors">
-        {item.icon}
-      </span>
+      {Icon && (
+        <span className="text-xl text-gray-600 group-hover/box:text-white transition-colors">
+          {Icon}
+        </span>
+      )}
+
       <span className="text-sm font-medium text-gray-500 group-hover/box:text-white tracking-wide">
         {item.name}
       </span>

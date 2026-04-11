@@ -1,0 +1,41 @@
+{
+  "sections": [
+    {
+      "label": "Programming Languages",
+      "items": [
+        { "name": "C", "icon": "cpp" },
+        { "name": "C++", "icon": "cpp" },
+        { "name": "JavaScript", "icon": "js" },
+        { "name": "SQL", "icon": "mysql" }
+      ]
+    },
+    {
+      "label": "Web Technologies",
+      "items": [
+        { "name": "HTML5", "icon": "html" },
+        { "name": "CSS3", "icon": "css" },
+        { "name": "React", "icon": "react" },
+        { "name": "Tailwind", "icon": "tailwind" },
+        { "name": "Node.js", "icon": "node" },
+        { "name": "Express", "icon": "express" },
+        { "name": "MongoDB", "icon": "mongo" },
+        { "name": "REST API", "icon": "api" },
+
+        { "name": "Supabase" },
+        { "name": "Framer Motion" }
+      ]
+    },
+    {
+      "label": "Engineering Tools",
+      "items": [
+        { "name": "Git", "icon": "git" },
+        { "name": "GitHub", "icon": "github" },
+        { "name": "Postman", "icon": "postman" },
+        { "name": "VS Code", "icon": "vscode" },
+
+        { "name": "Vercel" },
+        { "name": "Chrome DevTools" }
+      ]
+    }
+  ]
+}
