@@ -3,7 +3,7 @@ import {
   BiLogoYoutube,
   BiLogoLinkedin,
   BiLogoTwitter,
-  BiLinkExternal
+  BiLinkExternal,
 } from "react-icons/bi";
 
 const BATCH = 1;
@@ -14,26 +14,26 @@ export default function Logs() {
   const [data, setData] = useState({
     learning: [],
     updates: [],
-    books: []
+    books: [],
   });
-
+  
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/blogs.json",
     )
-      .then(res => res.json())
-      .then(json => setData(json));
+      .then((res) => res.json())
+      .then((json) => setData(json));
   }, []);
 
   const sorted = [...(data[active] || [])].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
+    (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
   );
 
   return (
     <section className="py-1 mb-15">
       {/* Tabs */}
       <div className="flex gap-10 mb-12 border-b border-gray-900">
-        {["learning", "updates", "books"].map(tab => (
+        {["learning", "updates", "books"].map((tab) => (
           <Tab
             key={tab}
             label={tab}
@@ -51,10 +51,10 @@ export default function Logs() {
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden transition-all duration-500"
           style={{
-            maxHeight: `${visible * 360}px`
+            maxHeight: `${visible * 360}px`,
           }}
         >
-          {sorted.map((item, i) => (
+          {sorted.slice(0, visible).map((item, i) => (
             <Card key={i} item={item} />
           ))}
         </div>
@@ -68,7 +68,7 @@ export default function Logs() {
       {visible < sorted.length && (
         <div className="flex justify-center mt-12">
           <button
-            onClick={() => setVisible(prev => prev + BATCH)}
+            onClick={() => setVisible((prev) => prev + BATCH)}
             className="px-4 py-2 text-xs font-bold tracking-[0.2em] uppercase text-gray-400 
             bg-transparent rounded-full border border-gray-800 
             hover:text-white hover:border-gray-500 
@@ -98,16 +98,39 @@ function Tab({ label, active, onClick }) {
   );
 }
 
+/* SAFE IMAGE RESOLVER */
+function resolveImage(url) {
+  if (!url)
+    return "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200";
+
+  if (url.includes("/_next/image") && url.includes("url=")) {
+    const match = url.match(/url=([^&]+)/);
+    if (match && match[1]) {
+      return decodeURIComponent(match[1]);
+    }
+  }
+
+  return url;
+}
+
+function safe(value, fallback = "") {
+  return value || fallback;
+}
+
 function Card({ item }) {
+  const title = safe(item.title, "Untitled post");
+  const text = safe(item.text, "No description available.");
+  const date = safe(item.date, "---- -- --");
+  const image = resolveImage(item.image);
+  const link = item.link || null;
+
   return (
     <article
       className="group cursor-pointer"
-      onClick={() => item.link && window.open(item.link, "_blank")}
+      onClick={() => link && window.open(link, "_blank")}
     >
       {/* image */}
       <div className="relative overflow-hidden rounded-sm border border-gray-900 mb-5 aspect-[16/10]">
-
-        {/* platform icon */}
         {item.type && (
           <div className="absolute top-3 left-3 z-10 bg-black/70 p-1 rounded">
             <PlatformIcon type={item.type} />
@@ -115,8 +138,8 @@ function Card({ item }) {
         )}
 
         <img
-          src={item.image}
-          alt={item.title}
+          src={image}
+          alt={title}
           className="w-full h-full object-cover 
           grayscale group-hover:grayscale-0 
           scale-[1.02] group-hover:scale-105
@@ -129,18 +152,17 @@ function Card({ item }) {
       {/* content */}
       <div className="space-y-3">
         <p className="text-[10px] font-mono text-gray-600 tracking-[0.15em] uppercase">
-          / {item.date}
+          / {date}
         </p>
 
-        <h3 className="text-lg md:text-xl font-light text-gray-300 
-        group-hover:text-white tracking-tight leading-snug">
-          {item.title}
+        <h3 className="text-lg md:text-xl font-light text-gray-300 group-hover:text-white">
+          {title}
         </h3>
 
         <div className="w-8 h-[1px] bg-gray-800 group-hover:w-12 transition-all duration-500" />
 
         <p className="text-sm text-gray-500 group-hover:text-gray-400">
-          {item.text}
+          {text}
         </p>
       </div>
     </article>
@@ -149,11 +171,11 @@ function Card({ item }) {
 
 function PlatformIcon({ type }) {
   const map = {
-    youtube: <BiLogoYoutube className="text-red-500" />,
-    linkedin: <BiLogoLinkedin className="text-blue-500" />,
-    twitter: <BiLogoTwitter className="text-sky-400" />,
-    blog: <BiLinkExternal className="text-gray-300" />
+    youtube: <BiLogoYoutube className="text-red-500 text-lg" />,
+    linkedin: <BiLogoLinkedin className="text-blue-500 text-lg" />,
+    twitter: <BiLogoTwitter className="text-sky-400 text-lg" />,
+    blog: <BiLinkExternal className="text-gray-300 text-lg" />,
   };
 
-  return map[type] || <BiLinkExternal />;
+  return map[type] || <BiLinkExternal className="text-gray-300 text-lg" />;
 }
