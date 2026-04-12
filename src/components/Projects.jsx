@@ -13,7 +13,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="">
+    <section aria-label="Projects">
       {/* Heading */}
       <div className="relative inline-block mb-12 group">
         <div
@@ -22,9 +22,9 @@ export default function Projects() {
           rotate-[1deg] group-hover:rotate-[-1deg] 
           transition-transform duration-700 ease-out"
         />
-        <p className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
+        <h2 className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
           What I Build?
-        </p>
+        </h2>
       </div>
 
       <div className="relative">
@@ -52,6 +52,7 @@ export default function Projects() {
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setVisibleCount((prev) => prev + 2)}
+            aria-label="Load more projects"
             className="px-6 py-2 text-xs font-medium text-gray-300 
             bg-black rounded-full border border-gray-800 
             hover:text-white hover:border-gray-600 
@@ -67,7 +68,7 @@ export default function Projects() {
 
 function Project({ title, desc, tech, live }) {
   return (
-    <div className="group">
+    <article className="group">
       <div className="flex items-center justify-between">
         <h3 className="text-white">{title}</h3>
 
@@ -75,6 +76,8 @@ function Project({ title, desc, tech, live }) {
           <a
             href={live}
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${title} live project`}
             className="text-xs text-gray-500 hover:text-white transition"
           >
             live ↗
@@ -86,6 +89,6 @@ function Project({ title, desc, tech, live }) {
       <p className="text-xs text-gray-500 mt-2">{tech}</p>
 
       <div className="border-t border-dashed border-gray-800 mt-5 group-last:hidden" />
-    </div>
+    </article>
   );
 }

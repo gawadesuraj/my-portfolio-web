@@ -48,7 +48,7 @@ export default function Skills() {
   }, []);
 
   return (
-    <section className="py-2">
+    <section aria-label="Technical skills" className="py-2">
       {/* Heading */}
       <div className="relative inline-block mb-16 group ml-4 md:ml-0">
         <div
@@ -57,14 +57,14 @@ export default function Skills() {
           rotate-[1deg] group-hover:rotate-[-1deg] 
           transition-transform duration-700 ease-out"
         />
-        <p className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
+        <h2 className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
           What I Learn To Build?
-        </p>
+        </h2>
       </div>
 
       <div className="flex flex-col gap-10">
         {sections.map((section, idx) => (
-          <div key={idx} className="space-y-4">
+          <section key={idx} className="space-y-4">
             {/* Category Label */}
             <div className="relative inline-block mb-10 group">
               <div
@@ -75,9 +75,9 @@ export default function Skills() {
                 }}
               />
 
-              <p className="relative text-xs font-bold text-gray-500 tracking-[0.3em] uppercase">
+              <h3 className="relative text-xs font-bold text-gray-500 tracking-[0.3em] uppercase">
                 {section.label}
-              </p>
+              </h3>
             </div>
 
             {/* Marquee */}
@@ -105,7 +105,7 @@ export default function Skills() {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         ))}
       </div>
 
@@ -137,7 +137,10 @@ function SkillBox({ item }) {
   const Icon = iconMap[item.icon];
 
   return (
-    <div className="flex items-center gap-3 px-3 py-1 bg-[#0a0a0a] border border-gray-900 rounded-xl transition-all duration-300 hover:border-gray-600 hover:bg-[#111] group/box">
+    <article
+      aria-label={item.name}
+      className="flex items-center gap-3 px-3 py-1 bg-[#0a0a0a] border border-gray-900 rounded-xl transition-all duration-300 hover:border-gray-600 hover:bg-[#111] group/box"
+    >
       {Icon && (
         <span className="text-xl text-gray-600 group-hover/box:text-white transition-colors">
           {Icon}
@@ -147,6 +150,6 @@ function SkillBox({ item }) {
       <span className="text-sm font-medium text-gray-500 group-hover/box:text-white tracking-wide">
         {item.name}
       </span>
-    </div>
+    </article>
   );
 }

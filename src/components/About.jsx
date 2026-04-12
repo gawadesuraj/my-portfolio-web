@@ -11,7 +11,15 @@ export default function About() {
   }, []);
 
   return (
-    <section className="max-w-3xl relative mx-auto">
+    <section
+      aria-label="About Suraj Gawade"
+      className="max-w-3xl relative mx-auto"
+    >
+      {/* SEO H1 (hidden visually, visible to search engines) */}
+      <h1 className="sr-only">
+        Suraj Gawade — MERN Stack Developer and Full Stack Software Engineer
+      </h1>
+
       <div className="relative text-gray-400 leading-relaxed text-[16px]">
         {content.slice(0, step).map((item) => (
           <p
@@ -33,6 +41,7 @@ export default function About() {
         <div className="flex justify-center mt-8 relative z-20">
           <button
             onClick={() => setStep((prev) => prev + 1)}
+            aria-label="Read more about Suraj Gawade"
             className="px-4 py-2 text-xs font-medium tracking-widest text-gray-400 
             bg-black rounded-full border border-gray-800 
             hover:text-white hover:border-gray-500 

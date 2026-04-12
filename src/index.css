@@ -34,3 +34,13 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+/* Remove GitHub calendar scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

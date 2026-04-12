@@ -4,14 +4,18 @@ import { SiGithub } from "react-icons/si";
 
 export default function GitHubVelocity() {
   const scrollRef = useRef(null);
-  const [totalCount, setTotalCount] = useState(0); // State to store real total
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      setTimeout(() => {
-        scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-      }, 500);
-    }
+    const el = scrollRef.current;
+    if (!el) return;
+
+    setTimeout(() => {
+      el.scrollTo({
+        left: el.scrollWidth,
+        behavior: "smooth",
+      });
+    }, 500);
   }, []);
 
   const selectLast12Months = (contributions) => {
@@ -25,7 +29,6 @@ export default function GitHubVelocity() {
       return date >= start && date <= today;
     });
 
-    // CALCULATE REAL TOTAL: Summing up all contributions in this filtered set
     const total = filteredData.reduce((sum, day) => sum + day.count, 0);
     setTotalCount(total);
 
@@ -38,8 +41,7 @@ export default function GitHubVelocity() {
   };
 
   return (
-    <section className="w-full">
-      {/* CARD CONTAINER */}
+    <section className="w-full overflow-hidden">
       <div className="bg-[#0d0d0d] border border-white/5 rounded-xl p-5 md:p-6 shadow-2xl">
         {/* HEADER */}
         <div className="flex items-center justify-between mb-8">
@@ -47,6 +49,7 @@ export default function GitHubVelocity() {
             <div className="bg-black p-2 rounded-lg border border-white/10">
               <SiGithub className="text-xl text-white" />
             </div>
+
             <div className="flex flex-col">
               <h3 className="text-lg font-mono font-bold text-gray-200 tracking-tighter leading-none">
                 gawadesuraj
@@ -67,12 +70,12 @@ export default function GitHubVelocity() {
           </a>
         </div>
 
-        {/* CALENDAR AREA */}
+        {/* CALENDAR */}
         <div
           ref={scrollRef}
-          className="w-full overflow-x-auto scrollbar-hide select-none"
+          className="w-full overflow-x-scroll overflow-y-hidden hide-scrollbar"
         >
-          <div className="min-w-[800px] flex justify-center">
+          <div className="min-w-[820px]">
             <GitHubCalendar
               username="gawadesuraj"
               blockSize={12}
@@ -80,8 +83,8 @@ export default function GitHubVelocity() {
               theme={theme}
               fontSize={12}
               transformData={selectLast12Months}
-              hideTotalCount={true}
-              hideColorLegend={true}
+              hideTotalCount
+              hideColorLegend
               style={{
                 color: "#444",
                 fontFamily: "monospace",
@@ -90,8 +93,8 @@ export default function GitHubVelocity() {
           </div>
         </div>
 
-        {/* FOOTER: Displays Real Live Count */}
-        <div className="flex flex-row justify-between items-center mt-4 pt-4 border-t border-white/5 px-1">
+        {/* FOOTER */}
+        <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5 px-1">
           <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
             {totalCount.toLocaleString()} Contributions in the last year
           </p>
@@ -99,30 +102,27 @@ export default function GitHubVelocity() {
           <div className="flex items-center gap-2 text-[9px] text-gray-600 uppercase tracking-widest">
             <span className="opacity-50">Less</span>
             <div className="flex gap-[3px]">
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-[#161616]" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-[#2d2d2d]" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-[#4d4d4d]" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-[#7d7d7d]" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-[#bcbcbc]" />
+              <div className="w-2.5 h-2.5 bg-[#161616]" />
+              <div className="w-2.5 h-2.5 bg-[#2d2d2d]" />
+              <div className="w-2.5 h-2.5 bg-[#4d4d4d]" />
+              <div className="w-2.5 h-2.5 bg-[#7d7d7d]" />
+              <div className="w-2.5 h-2.5 bg-[#bcbcbc]" />
             </div>
             <span className="opacity-50">More</span>
           </div>
         </div>
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none !important;
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
         }
-        .scrollbar-hide {
-          -ms-overflow-style: none !important;
-          scrollbar-width: none !important;
+
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
-      `,
-        }}
-      />
+      `}</style>
     </section>
   );
 }

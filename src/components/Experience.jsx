@@ -6,14 +6,14 @@ export default function Experience() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/experience.json"
+      "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/experience.json",
     )
       .then((res) => res.json())
       .then((data) => setExperiences(data));
   }, []);
 
   return (
-    <section className="">
+    <section aria-label="Work experience">
       {/* Heading */}
       <div className="relative inline-block mb-12 group">
         <div
@@ -22,9 +22,9 @@ export default function Experience() {
           rotate-[1deg] group-hover:rotate-[-1deg] 
           transition-transform duration-700 ease-out"
         />
-        <p className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
+        <h2 className="relative text-xs font-extrabold text-gray-300 tracking-[0.3em] uppercase">
           Experience
-        </p>
+        </h2>
       </div>
 
       {/* Card Grid Layout */}
@@ -48,11 +48,12 @@ export default function Experience() {
         )}
       </div>
 
-      {/* READ MORE BUTTON (RESTORED) */}
+      {/* READ MORE BUTTON */}
       {visibleCount < experiences.length && (
         <div className="flex justify-center mt-12">
           <button
             onClick={() => setVisibleCount((prev) => prev + 2)}
+            aria-label="Load more experience"
             className="px-6 py-2 text-xs font-medium text-gray-300 
             bg-black rounded-full border border-gray-800 
             hover:text-white hover:border-gray-600 
@@ -68,7 +69,7 @@ export default function Experience() {
 
 function Card({ year, title, company, html }) {
   return (
-    <div className="group relative flex flex-col h-full p-6 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-gray-700 hover:bg-[#0c0c0c] transition-all duration-500">
+    <article className="group relative flex flex-col h-full p-6 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-gray-700 hover:bg-[#0c0c0c] transition-all duration-500">
       <div className="flex flex-col gap-2 mb-6">
         <span className="text-[10px] font-bold tracking-widest text-gray-500 uppercase group-hover:text-gray-300 transition-colors">
           {year}
@@ -111,6 +112,6 @@ function Card({ year, title, company, html }) {
       </div>
 
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+    </article>
   );
 }

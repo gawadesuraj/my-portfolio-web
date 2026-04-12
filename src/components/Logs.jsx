@@ -16,7 +16,7 @@ export default function Logs() {
     updates: [],
     books: [],
   });
-  
+
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/gawadesuraj/my-portfolio-web/main/data/blogs.json",
@@ -26,13 +26,19 @@ export default function Logs() {
   }, []);
 
   const sorted = [...(data[active] || [])].sort(
-    (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
+    (a, b) => new Date(b.date || 0) - new Date(a.date || 0),
   );
 
   return (
-    <section className="py-1 mb-15">
+    <section aria-label="Learning logs and updates" className="py-1 mb-15">
+      {/* Heading */}
+      <h2 className="sr-only">Learning Logs and Updates</h2>
+
       {/* Tabs */}
-      <div className="flex gap-10 mb-12 border-b border-gray-900">
+      <nav
+        aria-label="Logs categories"
+        className="flex gap-10 mb-12 border-b border-gray-900"
+      >
         {["learning", "updates", "books"].map((tab) => (
           <Tab
             key={tab}
@@ -44,7 +50,7 @@ export default function Logs() {
             }}
           />
         ))}
-      </div>
+      </nav>
 
       {/* Grid */}
       <div className="relative">
@@ -64,10 +70,10 @@ export default function Logs() {
         )}
       </div>
 
-      {/* Explore */}
       {visible < sorted.length && (
         <div className="flex justify-center mt-12">
           <button
+            aria-label="Load more logs"
             onClick={() => setVisible((prev) => prev + BATCH)}
             className="px-4 py-2 text-xs font-bold tracking-[0.2em] uppercase text-gray-400 
             bg-transparent rounded-full border border-gray-800 
@@ -85,6 +91,7 @@ export default function Logs() {
 function Tab({ label, active, onClick }) {
   return (
     <button
+      aria-label={`Show ${label} logs`}
       onClick={onClick}
       className={`text-xs font-bold tracking-widest uppercase pb-4 transition-all duration-500 relative ${
         active ? "text-gray-300" : "text-gray-600 hover:text-gray-300"
@@ -126,10 +133,10 @@ function Card({ item }) {
 
   return (
     <article
+      aria-label={title}
       className="group cursor-pointer"
       onClick={() => link && window.open(link, "_blank")}
     >
-      {/* image */}
       <div className="relative overflow-hidden rounded-sm border border-gray-900 mb-5 aspect-[16/10]">
         {item.type && (
           <div className="absolute top-3 left-3 z-10 bg-black/70 p-1 rounded">
@@ -140,6 +147,7 @@ function Card({ item }) {
         <img
           src={image}
           alt={title}
+          loading="lazy"
           className="w-full h-full object-cover 
           grayscale group-hover:grayscale-0 
           scale-[1.02] group-hover:scale-105
@@ -149,7 +157,6 @@ function Card({ item }) {
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition duration-500" />
       </div>
 
-      {/* content */}
       <div className="space-y-3">
         <p className="text-[10px] font-mono text-gray-600 tracking-[0.15em] uppercase">
           / {date}
