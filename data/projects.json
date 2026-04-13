@@ -18,6 +18,6 @@
     "title": "API Response Visualizer",
     "desc": "Developer tool to visualize API responses and validate data using schema-based validation with structured JSON preview.",
     "tech": "React · JSON Schema · Tailwind",
-    "live": "#"
+    "live": ""
   },
 ]
