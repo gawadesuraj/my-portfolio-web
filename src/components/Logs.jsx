@@ -6,7 +6,7 @@ import {
   BiLinkExternal,
 } from "react-icons/bi";
 
-const BATCH = 1;
+const BATCH = 2;
 
 export default function Logs() {
   const [active, setActive] = useState("learning");
