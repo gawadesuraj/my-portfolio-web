@@ -15,9 +15,16 @@
   },
   {
     "id": 3,
-    "title": "API Response Visualizer",
-    "desc": "Developer tool to visualize API responses and validate data using schema-based validation with structured JSON preview.",
-    "tech": "React · JSON Schema · Tailwind",
-    "live": ""
+    "title": "Mintlify Clone(Only UI)",
+    "desc": "Build Only Frontend Section",
+    "tech": "HTML ·CSS",
+    "live": "https://github.com/gawadesuraj/mintlify-frontend-clone"
+  },
+  {
+    "id": 4,
+    "title": "Curson Clone(Only UI)",
+    "desc": "Build Only Frontend Section",
+    "tech": "HTML ·CSS",
+    "live": "https://github.com/gawadesuraj/cursor-clone"
   },
 ]
