@@ -1,43 +1,14 @@
 [
   {
     "id": 1,
-    "year": "FEB 2026 — PRESENT",
+    "year": "FEB,3 2026 - PRESENT",
     "title": "Full Stack MERN Intern",
     "company": "Codevocado",
     "html": "Working on scalable <span class='text-white font-medium'>MERN stack</span> applications. Building production-ready React components and optimizing <span class='text-white font-medium'>API performance</span>."
   },
   {
     "id": 2,
-    "year": "2025 — 2026",
-    "title": "Lead Web Developer",
-    "company": "Grampanchayat Dholewadi",
-    "html": "Built and deployed a <span class='text-white font-medium'>digital village administration platform</span>. Integrated <span class='text-white font-medium'>Supabase</span> for real-time database management. Live at <a href='https://dholewadi.in' target='_blank' class='text-white font-medium hover:underline'>dholewadi.in</a>."
-  }
-  ,
-   {
-    "id": 3,
-    "year": "FEB 2026 — PRESENT",
-    "title": "Full Stack MERN Intern",
-    "company": "Codevocado",
-    "html": "Working on scalable <span class='text-white font-medium'>MERN stack</span> applications. Building production-ready React components and optimizing <span class='text-white font-medium'>API performance</span>."
-  },
-  {
-    "id": 4,
-    "year": "2025 — 2026",
-    "title": "Lead Web Developer",
-    "company": "Grampanchayat Dholewadi",
-    "html": "Built and deployed a <span class='text-white font-medium'>digital village administration platform</span>. Integrated <span class='text-white font-medium'>Supabase</span> for real-time database management. Live at <a href='https://dholewadi.in' target='_blank' class='text-white font-medium hover:underline'>dholewadi.in</a>."
-  },
-   {
-    "id": 5,
-    "year": "FEB 2026 — PRESENT",
-    "title": "Full Stack MERN Intern",
-    "company": "Codevocado",
-    "html": "Working on scalable <span class='text-white font-medium'>MERN stack</span> applications. Building production-ready React components and optimizing <span class='text-white font-medium'>API performance</span>."
-  },
-  {
-    "id": 6,
-    "year": "2025 — 2026",
+    "year": "2025 - 2026",
     "title": "Lead Web Developer",
     "company": "Grampanchayat Dholewadi",
     "html": "Built and deployed a <span class='text-white font-medium'>digital village administration platform</span>. Integrated <span class='text-white font-medium'>Supabase</span> for real-time database management. Live at <a href='https://dholewadi.in' target='_blank' class='text-white font-medium hover:underline'>dholewadi.in</a>."
